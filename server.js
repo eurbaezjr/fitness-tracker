@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const databaseUrl = process.env.MONGODB_URI || "notetaker";
+const databaseUrl = process.env.MONGODB_URI || "fitness-tracker";
 const collections = ["notes"];
 
 const db = mongojs(databaseUrl, collections);
@@ -73,6 +73,7 @@ app.post("/update/:id", (req, res) => {
       $set: {
         title: req.body.title,
         note: req.body.note,
+        time: req.body.time,
         modified: Date.now()
       }
     },

@@ -47,13 +47,17 @@ function clearRecords() {
 function resetGoal() {
   const note = document.getElementById("note");
   note.value = "";
+  const time = document.getElementById("time");
+  time.value = "";
   const title = document.getElementById("title");
   title.value = "";
 }
 
-function updateTitleAndNote(data) {
+function updateGoal(data) {
   const note = document.getElementById("note");
   note.value = data.note;
+  const time = document.getElementById("time");
+  time.value = data.time;
   const title = document.getElementById("title");
   title.value = data.title;
 }
@@ -110,7 +114,7 @@ results.addEventListener("click", function(e) {
         return response.json();
       })
       .then(function(data) {
-        updateTitleAndNote(data);
+        updateGoal(data);
         const newButton = `<button id='updater' data-id=${data_id}>Update</button>`;
         actionBtn.innerHTML = newButton;
       })
@@ -126,6 +130,7 @@ actionBtn.addEventListener("click", function(e) {
     data_id = updateBtnEl.getAttribute("data-id");
     const title = document.getElementById("title").value;
     const note = document.getElementById("note").value;
+    const time = document.getElementById("time").value;
     fetch("/update/" + data_id, {
       method: "post",
       headers: {
@@ -134,7 +139,8 @@ actionBtn.addEventListener("click", function(e) {
       },
       body: JSON.stringify({
         title,
-        note
+        note,
+        time
       })
     })
       .then(function(response) {
@@ -162,6 +168,7 @@ actionBtn.addEventListener("click", function(e) {
       body: JSON.stringify({
         title: document.getElementById("title").value,
         note: document.getElementById("note").value,
+        time: document.getElementById("time").value,
         created: Date.now()
       })
     })
