@@ -1,0 +1,80 @@
+body {
+    text-align: center;
+    background-image: url('../images/calm.jpeg'); 
+    background-size: 100%;
+    align-content: center;
+}
+
+h1 {
+font-size: 50px;
+color: white;
+text-shadow: 1px 1px black;
+}
+
+span {
+    color: blue;
+}
+
+p {
+color: black;
+font-weight: bold;
+font-style: italic;
+font-size: 20px;
+}
+
+h4 {
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    text-align: center;
+    font-size: 25px;
+    width: 400px; 
+    text-shadow: 1px 1px white;
+}
+
+.delete {
+margin-left: 20px;
+color: red;
+cursor: pointer;
+text-align: right;
+}
+
+input {
+width: 400px;
+height: 50px;
+margin-left: auto;
+margin-right: auto;
+font-size: 42px;
+background-color: antiquewhite;
+}
+
+textarea {
+width: 400px;
+height: 400px;
+margin-left: auto;
+margin-right: auto;
+font-size: 24px;
+background-color: antiquewhite;
+}
+
+.data-title {
+cursor: pointer;
+font-size: 24px;
+}
+
+#results {
+width: 400px;
+height: 200px;
+overflow: auto;
+margin-left: auto;
+margin-right: auto;
+background-color: antiquewhite;
+}
+
+#action-button {
+display: inline-block;
+}
+
+#buttons {
+margin: 20px;
+}
