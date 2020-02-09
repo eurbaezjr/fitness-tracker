@@ -9,7 +9,7 @@ const results = document.getElementById("results");
 const status = document.getElementById("status");
 
 function getResults() {
-  clearTodos();
+  clearRecords();
   fetch("/all")
     .then(function(response) {
       if (response.status !== 200) {
@@ -17,7 +17,7 @@ function getResults() {
         return;
       }
       response.json().then(function(data) {
-        newTodoSnippet(data);
+        newGoal(data);
       });
     })
     .catch(function(err) {
@@ -25,7 +25,7 @@ function getResults() {
     });
 }
 
-function newTodoSnippet(res) {
+function newGoal(res) {
   for (var i = 0; i < res.length; i++) {
     const data_id = res[i]["_id"];
     const title = res[i]["title"];
@@ -33,18 +33,18 @@ function newTodoSnippet(res) {
     snippet = `
       <p class="data-entry">
       <span class="dataTitle" data-id=${data_id}>${title}</span>
-      <span onClick="delete" class="delete" data-id=${data_id}>x</span>;
+      <span onClick="delete" class="delete" data-id=${data_id}>x</span>
       </p>`;
     todoList.insertAdjacentHTML("beforeend", snippet);
   }
 }
 
-function clearTodos() {
+function clearRecords() {
   const todoList = document.getElementById("results");
   todoList.innerHTML = "";
 }
 
-function resetTitleAndNote() {
+function resetGoal() {
   const note = document.getElementById("note");
   note.value = "";
   const title = document.getElementById("title");
@@ -72,7 +72,7 @@ clear.addEventListener("click", function(e) {
           console.log("Looks like there was a problem. Status Code: " + response.status);
           return;
         }
-        clearTodos();
+        clearRecords();
       })
       .catch(function(err) {
         console.log("Fetch Error :-S", err);
@@ -93,7 +93,7 @@ results.addEventListener("click", function(e) {
           return;
         }
         element.parentNode.remove();
-        resetTitleAndNote();
+        resetGoal();
         const newButton = `
       <button id='make-new'>Submit</button>`;
         actionBtn.innerHTML = newButton;
@@ -142,7 +142,7 @@ actionBtn.addEventListener("click", function(e) {
       })
       .then(function(data) {
         element.innerText = title;
-        resetTitleAndNote();
+        resetGoal();
         const newButton = "<button id='make-new'>Submit</button>";
         actionBtn.innerHTML = newButton;
         status.innerText = "Creating";
@@ -166,7 +166,7 @@ actionBtn.addEventListener("click", function(e) {
       })
     })
       .then(res => res.json())
-      .then(res => newTodoSnippet([res]));
-    resetTitleAndNote();
+      .then(res => newGoal([res]));
+    resetGoal();
   }
 });
